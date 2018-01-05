@@ -11,12 +11,9 @@ body {
   height: 70px;
 }
 
-li {
-  display: inline-block;
-}
 
 form {
-  position: relative;
+  position: absolute;
   float: right;
   top: 10px;
   right: 5px;
@@ -38,8 +35,20 @@ input {
 
 #weather {
   position: relative;
-  top: 50%;
-  height: 100%;
-  width: 100%;
-  float: right;
+  margin: auto;
+  padding-top: 200px;
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  display:-webkit-box;
+}
+
+li {
+  display:block;
+}
+
+img {
+  position: absolute;
+  display: block;
+  margin-top: 30px;
+  left: 43%;
 }

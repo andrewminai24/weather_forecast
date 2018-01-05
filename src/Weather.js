@@ -13,10 +13,11 @@ export class Weather extends React.Component
   render()
   {
     return (
-        <div id="weather">
-          <h3>{this.props.city}</h3>
-          
-        </div>
+        <ul id="weather">
+          <li><h2>{this.props.city}</h2></li>
+          <li><img src={this.props.image} height="150" width="150"/></li>
+          <li><h1>{this.props.temp}</h1></li>
+        </ul>
     );
   }
 }

@@ -38,7 +38,10 @@ class App extends React.Component
     return(
       <div>
         <Top/>
-        <Weather image={images.sunny} city={this.state.json.name}/>
+        <Weather
+          image={images.sunny}
+          city={this.state.json.name}
+          temp={this.state.json.main.temp}/>
       </div>
     );
   }
