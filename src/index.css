@@ -38,7 +38,8 @@ input {
 
 #weather {
   position: relative;
+  top: 50%;
   height: 100%;
   width: 100%;
-  float: center;
+  float: right;
 }

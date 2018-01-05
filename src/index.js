@@ -15,11 +15,22 @@ let images = {
   sunny: "images/sunny.png"
 };
 
+function Get(url)
+{
+  var Httpreq = new XMLHttpRequest();
+  Httpreq.open("GET", url, false);
+  Httpreq.send(null);
+  return Httpreq.responseText;
+}
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Fairfax&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+
 class App extends React.Component
 {
   constructor(props)
   {
     super(props);
+    var json_obj = JSON.parse(Get(url));
+    this.state = {json: json_obj};
   }
 
   render()
@@ -27,7 +38,7 @@ class App extends React.Component
     return(
       <div>
         <Top/>
-        <Weather image={images.sunny} city=""/>
+        <Weather image={images.sunny} city={this.state.json.name}/>
       </div>
     );
   }

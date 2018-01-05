@@ -15,6 +15,7 @@ export class Weather extends React.Component
     return (
         <div id="weather">
           <h3>{this.props.city}</h3>
+          
         </div>
     );
   }
