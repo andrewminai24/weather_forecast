@@ -14,9 +14,10 @@ export class Weather extends React.Component
   {
     return (
         <ul id="weather">
-          <li><h2>{this.props.city}</h2></li>
+          <li><h1 id="city">{this.props.city}, {this.props.country}</h1></li>
           <li><img src={this.props.image} height="150" width="150"/></li>
-          <li><h1>{this.props.temp}</h1></li>
+          <li><h1 id="temp">{this.props.temp} F</h1></li>
+          <li><span id="maxTemp">{this.props.maxTemp}</span> | <span id="minTemp">{this.props.minTemp}</span></li>
         </ul>
     );
   }

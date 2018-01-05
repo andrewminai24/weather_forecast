@@ -11,7 +11,6 @@ body {
   height: 70px;
 }
 
-
 form {
   position: absolute;
   float: right;
@@ -37,18 +36,29 @@ input {
   position: relative;
   margin: auto;
   padding-top: 200px;
-  -webkit-box-align:center;
-  -webkit-box-pack:center;
-  display:-webkit-box;
+  align-items: center;
 }
 
 li {
-  display:block;
+  display: block;
 }
 
-img {
-  position: absolute;
-  display: block;
-  margin-top: 30px;
-  left: 43%;
+#city {
+  font-size: 32px;
+}
+
+h1 {
+  font-weight: lighter;
+}
+
+ul {
+    text-align: center;
+}
+
+#minTemp {
+  color: #616161;
+}
+
+span {
+  font-size: 18px;
 }

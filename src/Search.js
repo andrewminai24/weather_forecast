@@ -8,8 +8,8 @@ export class Search extends React.Component
   render()
   {
     return (
-      <form action="#">
-        <input type="text" name="City" placeholder="City"/>
+      <form>
+        <input type="text" name="City" placeholder="City" />
         <AwesomeButton size="small" bubbles>Search</AwesomeButton>
       </form>
     );

@@ -22,7 +22,7 @@ function Get(url)
   Httpreq.send(null);
   return Httpreq.responseText;
 }
-let url = "http://api.openweathermap.org/data/2.5/weather?q=Fairfax&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
 
 class App extends React.Component
 {
@@ -41,7 +41,10 @@ class App extends React.Component
         <Weather
           image={images.sunny}
           city={this.state.json.name}
-          temp={this.state.json.main.temp}/>
+          temp={this.state.json.main.temp}
+          country={this.state.json.sys.country}
+          maxTemp={this.state.json.main.temp_max}
+          minTemp={this.state.json.main.temp_min} />
       </div>
     );
   }
