@@ -5,7 +5,9 @@ import 'react-awesome-button/dist/styles.css'
 import './index.css'
 import { Top } from './Top.js'
 import { Weather } from './Weather.js'
+import { userSearch } from './Search.js'
 
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
 let images = {
   rain: "images/rain.png",
   cloud: "images/cloud/png",
@@ -22,15 +24,30 @@ function Get(url)
   Httpreq.send(null);
   return Httpreq.responseText;
 }
-let url = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
 
-class App extends React.Component
+export function loadUrl(userSearch)
+{
+  var json_obj;
+  if(userSearch != "")
+  {
+    url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+    json_obj = JSON.parse(Get(url));
+  }
+  else
+  {
+    json_obj = JSON.parse(Get(url));
+  }
+  return json_obj;
+}
+
+export class App extends React.Component
 {
   constructor(props)
   {
     super(props);
-    var json_obj = JSON.parse(Get(url));
-    this.state = {json: json_obj};
+    this.state = {
+      json: loadUrl(userSearch)
+    };
   }
 
   render()
