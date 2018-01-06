@@ -4,7 +4,7 @@ import 'react-awesome-button/dist/styles.css'
 import './index.css'
 import { userSearch } from './Search.js';
 
-let url = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
 let images = {
   rain: "images/rain.png",
   cloud: "images/cloud.png",
@@ -41,10 +41,9 @@ export class Weather extends React.Component
     return json_obj;
   }
 
-  reloadUrl(newUserSearch)
+  reloadUrl(userSearch)
   {
-    var json_obj = this.loadUrl(newUserSearch);
-    this.setState({ json: json_obj });
+    this.setState({ json: this.loadUrl(userSearch) });
   }
 
   getJSON(url)
@@ -68,11 +67,11 @@ export class Weather extends React.Component
           this.image = images.sunnyCloudy;
         if(weather[i].id == 801 && weather[i].icon[2] == "n")
           this.image = images.cloudyNight;
-        if(weather[i].id == 802)
+        if(weather[i].id == 802 || weather[i].main == "Smoke")
           this.image = images.cloud;
         if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
           this.image = images.moon;
-        if(weather[i].main == "Atmosphere")
+        if(weather[i].main == "Atmosphere" || weather[i].main == "Haze")
           this.image = images.atmosphere;
         if(weather[i].main == "Snow")
           this.image = images.snow;
@@ -88,7 +87,7 @@ export class Weather extends React.Component
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
           <li><h3 id="temp">{this.state.json.main.temp} F</h3></li>
-          <li><span id="maxTemp">{this.state.json.main.temp_max} | </span> <span id="minTemp">{this.state.json.main.temp_min}</span></li>
+          <li><span id="maxTemp">{this.state.json.main.temp_max}</span> | <span id="minTemp">{this.state.json.main.temp_min}</span></li>
         </ul>
     );
   }
