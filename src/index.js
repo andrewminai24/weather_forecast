@@ -7,14 +7,17 @@ import { Top } from './Top.js'
 import { Weather } from './Weather.js'
 import { userSearch } from './Search.js'
 
-let url = "http://api.openweathermap.org/data/2.5/weather?q=Sacramento&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
 let images = {
   rain: "images/rain.png",
-  cloud: "images/cloud/png",
+  cloud: "images/cloud.png",
   lightning: "images/lightning.png",
-  moon: "images/moon/png",
+  moon: "images/moon.png",
   sunnyCloudy: "images/sunny_cloudy.png",
-  sunny: "images/sunny.png"
+  sunny: "images/sunny.png",
+  cloudyNight: "images/cloudyNight.png",
+  snow: "images/snow.png",
+  atmosphere: "images/wind.png"
 };
 
 function Get(url)
@@ -64,8 +67,24 @@ export class App extends React.Component
       var weather = this.state.json.weather;
       for(var i in weather)
       {
-        if(weather[i].main == "Rain")
+        if(weather[i].main == "Rain" || weather[i].main == "Drizzle")
           this.image = images.rain;
+        if(weather[i].main == "Clear" && weather[i].icon[2] == "d")
+          this.image = images.sunny;
+        if(weather[i].id == 801 && weather[i].icon[2] == "d")
+          this.image = images.sunnyCloudy;
+        if(weather[i].id == 801 && weather[i].icon[2] == "n")
+          this.image = images.cloudyNight;
+        if(weather[i].id == 802)
+          this.image = images.cloud;
+        if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
+          this.image = images.moon;
+        if(weather[i].main == "Atmosphere")
+          this.image = images.atmosphere;
+        if(weather[i].main == "Snow")
+          this.image = images.snow;
+        if(weather[i].main == "Thunderstorm")
+          this.image = images.lightning;
       }
   }
 
