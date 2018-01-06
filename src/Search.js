@@ -17,7 +17,8 @@ export class Search extends Weather
   getText()
   {
     userSearch = document.getElementById("userInput").value;
-    this.props.changeCity(userSearch);
+    if(userSearch != "")
+      this.props.changeCity(userSearch);
   }
 
   render()

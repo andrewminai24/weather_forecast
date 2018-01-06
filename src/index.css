@@ -12,7 +12,7 @@ body, h1 {
   height: 70px;
 }
 
-#search, a {
+#search, #switchButton {
   position: absolute;
   float: right;
   top: 10px;
@@ -27,9 +27,8 @@ body, h1 {
   left: 15px;
 }
 
-a {
-  margin-right: 320px;
-  margin-top: 5px;
+#switchButton {
+  margin-right: 315px;
 }
 
 input {

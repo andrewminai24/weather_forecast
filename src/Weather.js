@@ -1,6 +1,7 @@
 import React from 'react';
-import './index.css'
+import './index.css';
 import { userSearch } from './Search.js';
+import { units } from './SwitchUnits.js';
 
 let url;
 let weather;
@@ -108,7 +109,7 @@ export class Weather extends React.Component
         <ul id="weather">
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
-          <li><h3 id="temp">{this.state.json.main.temp}° F</h3></li>
+          <li><h3 id="temp">{this.state.json.main.temp}° {units}</h3></li>
           <li><span id="maxTemp">{this.state.json.main.temp_max}° | </span><span id="minTemp">{this.state.json.main.temp_min}°</span></li>
         </ul>
     );
