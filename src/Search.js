@@ -25,7 +25,7 @@ export class Search extends Weather
   {
     return (
       <div id="search">
-        <input type="text" id="userInput" placeholder="City" />
+        <input type="text" id="userInput" placeholder="Search for a city" />
         <AwesomeButton size="small" bubbles action={this.getText}>Search</AwesomeButton>
       </div>
     );
