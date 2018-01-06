@@ -2,21 +2,23 @@ import React from 'react';
 import AwesomeButton from 'react-awesome-button'
 import 'react-awesome-button/dist/styles.css'
 import './index.css'
-import { loadUrl } from './index.js';
+import { App } from './index.js';
 
 export var userSearch = "";
+var updateWeather = null;
 export class Search extends React.Component
 {
   constructor(props)
   {
     super(props);
     this.getText = this.getText.bind(this);
+    updateWeather = new App();
   }
 
   getText()
   {
     userSearch = document.getElementById("userInput").value;
-    loadUrl(userSearch);
+    updateWeather.reloadUrl(userSearch);
   }
 
   render()
