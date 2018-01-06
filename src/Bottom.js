@@ -4,11 +4,6 @@ import './index.css';
 
 export class Bottom extends Weather
 {
-  constructor(props)
-  {
-      super(props);
-  }
-
   render()
   {
     return(

@@ -6,7 +6,6 @@ import { App } from './index.js';
 import { Weather } from './Weather.js'
 
 export var userSearch = "";
-var updateWeather = null;
 export class Search extends Weather
 {
   constructor(props)
@@ -18,7 +17,7 @@ export class Search extends Weather
   getText()
   {
     userSearch = document.getElementById("userInput").value;
-    super.reloadUrl(userSearch);
+    this.props.changeCity(userSearch);
   }
 
   render()
