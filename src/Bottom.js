@@ -8,8 +8,8 @@ export class Bottom extends Weather
   {
     return(
       <ol id="bottom">
-        <li><Weather cityStart="London" /></li>
-        <li><Weather cityStart="Paris" /></li>
+        <li><Weather cityStart="Rio de Janeiro" /></li>
+        <li><Weather cityStart="Moscow,ru" /></li>
         <li><Weather cityStart="Beijing" /></li>
       </ol>);
   }

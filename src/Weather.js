@@ -3,6 +3,7 @@ import './index.css'
 import { userSearch } from './Search.js';
 
 let url;
+let weather;
 let images = {
   rain: "images/rain.png",
   cloud: "images/cloud.png",
@@ -22,7 +23,7 @@ export class Weather extends React.Component
   {
     super(props);
     url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
-
+    this.determineWeather = this.determineWeather.bind(this);
     this.loadUrl = this.loadUrl.bind(this);
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);
@@ -35,16 +36,10 @@ export class Weather extends React.Component
   {
     var json_obj;
     if(userSearch != "")
-    {
       url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
-    }
     json_obj = JSON.parse(this.getJSON(url));
+    weather = json_obj.weather;
     return json_obj;
-  }
-
-  reloadUrl(userSearch)
-  {
-    this.setState({ json: this.loadUrl(userSearch) });
   }
 
   getJSON(url)
@@ -55,39 +50,49 @@ export class Weather extends React.Component
     return Httpreq.responseText;
   }
 
-  componentWillMount()
+  reloadUrl(userSearch)
   {
-      var weather = this.state.json.weather;
-      for(var i in weather)
-      {
-        if(weather[i].main == "Rain" || weather[i].main == "Drizzle")
-          this.image = images.rain;
-        else if(weather[i].main == "Clear" && weather[i].icon[2] == "d")
-          this.image = images.sunny;
-        else if(weather[i].id == 801 && weather[i].icon[2] == "d")
-          this.image = images.sunnyCloudy;
-        else if(weather[i].id == 801 && weather[i].icon[2] == "n")
-          this.image = images.cloudyNight;
-        else if(weather[i].id == 802 || weather[i].main == "Smoke")
-          this.image = images.cloud;
-        else if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
-          this.image = images.moon;
-        else if(weather[i].main == "Atmosphere" || weather[i].main == "Haze")
-          this.image = images.atmosphere;
-        else if(weather[i].main == "Snow")
-          this.image = images.snow;
-        else if(weather[i].main == "Thunderstorm")
-          this.image = images.lightning;
-        else if(weather[i].main == "Fog")
-          this.image = images.fog;
-        else
-          this.image = images.cloud;
-      }
+    this.setState({ json: this.loadUrl(userSearch) });
   }
+
+  componentWillMount() { this.determineWeather(); }
+  componentWillUpdate() { this.determineWeather(); }
 
   componentWillReceiveProps(nextProps)
   {
     this.reloadUrl(nextProps.cityStart);
+    this.determineWeather();
+  }
+
+  determineWeather()
+  {
+    for(var i in weather)
+    {
+      if(weather[i].main == "Rain" || weather[i].main == "Drizzle")
+        this.image = images.rain;
+      else if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
+        this.image = images.moon;
+      else if(weather[i].id === 800 && weather[i].icon[2] == "d")
+        this.image = images.sunny;
+      else if(weather[i].id == 801 && weather[i].icon[2] == "d")
+        this.image = images.sunnyCloudy;
+      else if(weather[i].id == 801 && weather[i].icon[2] == "n")
+        this.image = images.cloudyNight;
+      else if(weather[i].main === "Clouds")
+        this.image = images.cloud;
+      else if(weather[i].main == "Atmosphere" || weather[i].main == "Haze")
+        this.image = images.atmosphere;
+      else if(weather[i].main == "Snow")
+        this.image = images.snow;
+      else if(weather[i].main == "Thunderstorm")
+        this.image = images.lightning;
+      else if(weather[i].main == "Fog" || weather[i].main == "Smoke")
+        this.image = images.fog;
+      else if(weather[i].icon[2] == "n")
+        this.image = images.cloudyNight;
+      else if(weather[i].icon[2] == "d")
+        this.image = images.sunnyCloudy;
+    }
   }
 
   render()

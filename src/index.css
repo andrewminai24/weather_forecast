@@ -1,5 +1,6 @@
-body {
+body, h1 {
   font-family: verdana, sans-serif;
+  font-weight: lighter;
 }
 
 #top {
@@ -38,9 +39,9 @@ input {
   font-size: 18px;
 }
 
-#weather {
+div > #weather {
   margin: auto;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 #bottom {
@@ -49,7 +50,8 @@ input {
   width: 100%;
   table-layout: fixed;
   background-color: #F5F5F5;
-  padding-bottom: 20px;
+  padding-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 li {
@@ -62,10 +64,6 @@ li {
 
 #temp {
   font-size: 40px;
-  font-weight: lighter;
-}
-
-h1 {
   font-weight: lighter;
 }
 
@@ -84,6 +82,7 @@ span {
 ol > li {
   display: table-cell;
   text-align: center;
+  padding-top: 14px;
 }
 
 ol {
