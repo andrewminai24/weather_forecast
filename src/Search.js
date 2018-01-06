@@ -3,6 +3,7 @@ import AwesomeButton from 'react-awesome-button'
 import 'react-awesome-button/dist/styles.css'
 import './index.css'
 import { App } from './index.js';
+import { Weather } from './Weather.js'
 
 export var userSearch = "";
 var updateWeather = null;
@@ -12,13 +13,13 @@ export class Search extends React.Component
   {
     super(props);
     this.getText = this.getText.bind(this);
-    updateWeather = new App();
+    var weather = new Weather();
   }
 
   getText()
   {
     userSearch = document.getElementById("userInput").value;
-    updateWeather.reloadUrl(userSearch);
+    this.weather.update(userSearch);
   }
 
   render()

@@ -11,7 +11,7 @@ body {
   height: 70px;
 }
 
-#search {
+#search, a {
   position: absolute;
   float: right;
   top: 10px;
@@ -23,6 +23,11 @@ body {
   color: steelblue;
   top: -10px;
   left: 10px;
+}
+
+a {
+  margin-right: 320px;
+  margin-top: 5px;
 }
 
 input {
@@ -44,6 +49,11 @@ li {
 
 #city {
   font-size: 32px;
+}
+
+#temp {
+  font-size: 40px;
+  font-weight: lighter;
 }
 
 h1 {
