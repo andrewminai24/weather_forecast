@@ -45,7 +45,6 @@ export class Weather extends React.Component
   {
     var json_obj = this.loadUrl(newUserSearch);
     this.setState({ json: json_obj });
-    alert(this.state.json.name);
   }
 
   getJSON(url)
@@ -54,11 +53,6 @@ export class Weather extends React.Component
     Httpreq.open("GET", url, false);
     Httpreq.send(null);
     return Httpreq.responseText;
-  }
-
-  shouldComponentUpdate(nextProps, nextState)
-  {
-    return true;
   }
 
   componentWillMount()
@@ -94,7 +88,7 @@ export class Weather extends React.Component
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
           <li><h3 id="temp">{this.state.json.main.temp} F</h3></li>
-          <li><span id="maxTemp">{this.state.json.main.temp_max}</span> | <span id="minTemp">{this.state.json.main.temp_min}</span></li>
+          <li><span id="maxTemp">{this.state.json.main.temp_max} | </span> <span id="minTemp">{this.state.json.main.temp_min}</span></li>
         </ul>
     );
   }
