@@ -22,7 +22,6 @@ export class Weather extends React.Component
   constructor(props)
   {
     super(props);
-    this.update = this.update.bind(this);
     this.loadUrl = this.loadUrl.bind(this);
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);
@@ -42,9 +41,11 @@ export class Weather extends React.Component
     return json_obj;
   }
 
-  reloadUrl(userSearch)
+  reloadUrl(newUserSearch)
   {
-    this.setState({ json: this.loadUrl(userSearch) }, () => alert("Done"));
+    var json_obj = this.loadUrl(newUserSearch);
+    this.setState({ json: json_obj });
+    alert(this.state.json.name);
   }
 
   getJSON(url)
@@ -55,19 +56,9 @@ export class Weather extends React.Component
     return Httpreq.responseText;
   }
 
-  update()
-  {
-    //this.setState({ json: this.loadUrl(userSearch) }, () => alert("Done"));
-  }
-
   shouldComponentUpdate(nextProps, nextState)
   {
     return true;
-  }
-
-  componentWillUpdate(nextProps, nextState)
-  {
-    alert("updating weather");
   }
 
   componentWillMount()

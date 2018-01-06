@@ -7,19 +7,18 @@ import { Weather } from './Weather.js'
 
 export var userSearch = "";
 var updateWeather = null;
-export class Search extends React.Component
+export class Search extends Weather
 {
   constructor(props)
   {
     super(props);
     this.getText = this.getText.bind(this);
-    var weather = new Weather();
   }
 
   getText()
   {
     userSearch = document.getElementById("userInput").value;
-    this.weather.update(userSearch);
+    super.reloadUrl(userSearch);
   }
 
   render()
