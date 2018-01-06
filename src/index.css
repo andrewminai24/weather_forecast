@@ -39,8 +39,13 @@ input {
 
 #weather {
   margin: auto;
-  padding-top: 200px;
-  align-items: center;
+  padding-top: 100px;
+  /*align-items: center;*/
+}
+
+#bottom {
+  display:inline;
+  align-items:baseline;
 }
 
 li {
@@ -60,9 +65,10 @@ h1 {
   font-weight: lighter;
 }
 
-ul {
+div > ul {
     text-align: center;
 }
+
 
 #minTemp {
   color: #616161;

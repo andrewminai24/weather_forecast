@@ -4,7 +4,7 @@ import 'react-awesome-button/dist/styles.css'
 import './index.css'
 import { userSearch } from './Search.js';
 
-let url = "http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+let url;
 let images = {
   rain: "images/rain.png",
   cloud: "images/cloud.png",
@@ -22,6 +22,8 @@ export class Weather extends React.Component
   constructor(props)
   {
     super(props);
+    url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+
     this.loadUrl = this.loadUrl.bind(this);
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);

@@ -5,6 +5,7 @@ import 'react-awesome-button/dist/styles.css'
 import './index.css'
 import { Top } from './Top.js'
 import { Weather } from './Weather.js'
+import { Bottom } from './Bottom.js'
 
 export class App extends React.Component
 {
@@ -13,7 +14,8 @@ export class App extends React.Component
     return(
       <div>
         <Top/>
-        <Weather />
+        <Weather cityStart="Washington" id="mainWeather"/>
+        <Bottom />
       </div>
     );
   }
