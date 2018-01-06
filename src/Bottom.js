@@ -15,7 +15,7 @@ export class Bottom extends Weather
       <ol id="bottom">
         <li><Weather cityStart="London" /></li>
         <li><Weather cityStart="Paris" /></li>
-        <li><Weather cityStart="Moscow" /></li>
+        <li><Weather cityStart="Beijing" /></li>
       </ol>);
   }
 }

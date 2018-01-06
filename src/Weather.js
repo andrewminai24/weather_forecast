@@ -14,7 +14,8 @@ let images = {
   sunny: "images/sunny.png",
   cloudyNight: "images/cloudyNight.png",
   snow: "images/snow.png",
-  atmosphere: "images/wind.png"
+  atmosphere: "images/wind.png",
+  fog: "images/fog.png"
 };
 
 export class Weather extends React.Component
@@ -63,22 +64,26 @@ export class Weather extends React.Component
       {
         if(weather[i].main == "Rain" || weather[i].main == "Drizzle")
           this.image = images.rain;
-        if(weather[i].main == "Clear" && weather[i].icon[2] == "d")
+        else if(weather[i].main == "Clear" && weather[i].icon[2] == "d")
           this.image = images.sunny;
-        if(weather[i].id == 801 && weather[i].icon[2] == "d")
+        else if(weather[i].id == 801 && weather[i].icon[2] == "d")
           this.image = images.sunnyCloudy;
-        if(weather[i].id == 801 && weather[i].icon[2] == "n")
+        else if(weather[i].id == 801 && weather[i].icon[2] == "n")
           this.image = images.cloudyNight;
-        if(weather[i].id == 802 || weather[i].main == "Smoke")
+        else if(weather[i].id == 802 || weather[i].main == "Smoke")
           this.image = images.cloud;
-        if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
+        else if(weather[i].main == "Clear" && weather[i].icon[2] == "n")
           this.image = images.moon;
-        if(weather[i].main == "Atmosphere" || weather[i].main == "Haze")
+        else if(weather[i].main == "Atmosphere" || weather[i].main == "Haze")
           this.image = images.atmosphere;
-        if(weather[i].main == "Snow")
+        else if(weather[i].main == "Snow")
           this.image = images.snow;
-        if(weather[i].main == "Thunderstorm")
+        else if(weather[i].main == "Thunderstorm")
           this.image = images.lightning;
+        else if(weather[i].main == "Fog")
+          this.image = images.fog;
+        else
+          this.image = images.cloud;
       }
   }
 

@@ -10,7 +10,7 @@ export class Top extends React.Component {
       return (
         <div id="top">
           <h1 id="title">Weather Forecast</h1>
-          <a href="#"><img src="images/arrows.png" width="32" height="32" /></a>
+          <a href="#"><img src="images/arrows.png" width="36" height="36" /></a>
           <Search />
         </div>
       );

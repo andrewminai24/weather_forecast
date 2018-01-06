@@ -9,12 +9,20 @@ import { Bottom } from './Bottom.js'
 
 export class App extends React.Component
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      cityStart: "Washington"
+    }
+  }
+
   render()
   {
     return(
       <div>
         <Top/>
-        <Weather cityStart="Washington" id="mainWeather"/>
+        <Weather cityStart={this.state.cityStart} id="mainWeather"/>
         <Bottom />
       </div>
     );
