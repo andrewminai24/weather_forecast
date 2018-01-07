@@ -10,17 +10,19 @@ export class SwitchUnits extends React.Component
   {
     super(props);
     this.switchTo = this.switchTo.bind(this);
-    var temp = units === "F" ? "C" : "F";
+    this.makeUnitsOpposite = this.makeUnitsOpposite.bind(this);
     this.state = {
-      currentUnits: temp
+      currentUnits: this.makeUnitsOpposite()
     }
   }
 
   switchTo()
   {
     units = units === "F" ? "C" : "F";
-    this.setState({ currentUnits: units === "F" ? "C" : "F" });
+    this.setState({ currentUnits: this.makeUnitsOpposite() });
   }
+
+  makeUnitsOpposite() { return units === "F" ? "C" : "F"; }
 
   render()
   {

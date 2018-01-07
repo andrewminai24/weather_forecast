@@ -25,12 +25,19 @@ export class Weather extends React.Component
     super(props);
     url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
     this.determineWeather = this.determineWeather.bind(this);
+    this.getUrl = this.getUrl.bind(this);
     this.loadUrl = this.loadUrl.bind(this);
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);
     this.state = {
       json: this.loadUrl(userSearch)
     };
+  }
+
+  getUrl()
+  {
+    if(units === "F")
+      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
   }
 
   loadUrl(userSearch)
