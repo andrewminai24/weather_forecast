@@ -3,7 +3,7 @@ import AwesomeButton from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import './index.css';
 
-export var switchUnits = "F";
+var switchUnits = "F";
 export class SwitchUnits extends React.Component
 {
   constructor(props)

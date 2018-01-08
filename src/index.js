@@ -14,7 +14,7 @@ export class App extends React.Component
     this.changeCity = this.changeCity.bind(this);
     this.changeUnits = this.changeUnits.bind(this);
     this.state = {
-      cityStart: "Ulaanbaatar",
+      cityStart: "Sacramento",
       units: "F"
     }
   }

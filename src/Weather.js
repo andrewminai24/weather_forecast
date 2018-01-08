@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
 import { userSearch } from './Search.js';
-import { switchUnits } from './SwitchUnits.js';
 
 let url;
 let weather;
@@ -31,7 +30,7 @@ export class Weather extends React.Component
     this.getJSON = this.getJSON.bind(this);
     this.state = {
       json: this.loadUrl(userSearch, "F"),
-      units: switchUnits
+      units: "F"
     };
   }
 
