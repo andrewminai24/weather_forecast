@@ -12,23 +12,30 @@ export class App extends React.Component
   {
     super(props);
     this.changeCity = this.changeCity.bind(this);
+    this.changeUnits = this.changeUnits.bind(this);
     this.state = {
-      cityStart: "Washington"
+      cityStart: "Ulaanbaatar",
+      units: "F"
     }
   }
 
   changeCity(newCity)
   {
-    this.setState({cityStart: newCity});
+    this.setState({ cityStart: newCity });
+  }
+
+  changeUnits(newUnits)
+  {
+    this.setState({ units: newUnits });
   }
 
   render()
   {
     return(
       <div>
-        <Top changeCity={this.changeCity}/>
-        <Weather cityStart={this.state.cityStart} id="mainWeather" />
-        <Bottom />
+        <Top changeCity={this.changeCity} changeUnits={this.changeUnits} />
+        <Weather cityStart={this.state.cityStart} units={ this.state.units } id="mainWeather" />
+        <Bottom units={this.state.units} />
       </div>
     );
   }

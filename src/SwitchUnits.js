@@ -3,7 +3,7 @@ import AwesomeButton from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import './index.css';
 
-export var units = "F";
+export var switchUnits = "F";
 export class SwitchUnits extends React.Component
 {
   constructor(props)
@@ -12,17 +12,18 @@ export class SwitchUnits extends React.Component
     this.switchTo = this.switchTo.bind(this);
     this.makeUnitsOpposite = this.makeUnitsOpposite.bind(this);
     this.state = {
-      currentUnits: this.makeUnitsOpposite()
+      unitsToDisplay: this.makeUnitsOpposite()
     }
   }
 
   switchTo()
   {
-    units = units === "F" ? "C" : "F";
-    this.setState({ currentUnits: this.makeUnitsOpposite() });
+    switchUnits = switchUnits === "F" ? "C" : "F";
+    this.props.changeUnits(switchUnits);
+    this.setState({ unitsToDisplay: this.makeUnitsOpposite() });
   }
 
-  makeUnitsOpposite() { return units === "F" ? "C" : "F"; }
+  makeUnitsOpposite() { return switchUnits === "F" ? "C" : "F"; }
 
   render()
   {
@@ -31,7 +32,7 @@ export class SwitchUnits extends React.Component
         <AwesomeButton
           size="icon" bubbles
           action={this.switchTo}>
-            {this.state.currentUnits}
+            {this.state.unitsToDisplay}
         </AwesomeButton>
       </div>
     );

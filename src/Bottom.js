@@ -4,13 +4,15 @@ import './index.css';
 
 export class Bottom extends Weather
 {
+  constructor(props) { super(props); } 
+
   render()
   {
     return(
       <ol id="bottom">
-        <li><Weather cityStart="Rio de Janeiro" /></li>
-        <li><Weather cityStart="Moscow,ru" /></li>
-        <li><Weather cityStart="Beijing" /></li>
+        <li><Weather cityStart="Rio de Janeiro" units={this.props.units}/></li>
+        <li><Weather cityStart="Moscow,ru" units={this.props.units}/></li>
+        <li><Weather cityStart="Los Angeles" units={this.props.units}/></li>
       </ol>);
   }
 }

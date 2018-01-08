@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import { userSearch } from './Search.js';
-import { units } from './SwitchUnits.js';
+import { switchUnits } from './SwitchUnits.js';
 
 let url;
 let weather;
@@ -30,22 +30,30 @@ export class Weather extends React.Component
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);
     this.state = {
-      json: this.loadUrl(userSearch)
+      json: this.loadUrl(userSearch, "F"),
+      units: switchUnits
     };
   }
 
   getUrl()
   {
-    if(units === "F")
-      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+    if(this.state.units === "F")
+    {
+      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=8ead3d2f63f6f433cd582f4299720db0&units=imperial&type=accurate";
+    }
   }
 
-  loadUrl(userSearch)
+  loadUrl(userSearch, units)
   {
-    var json_obj;
-    if(userSearch != "")
+    if(userSearch != "" && units == "F")
+    {
       url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
-    json_obj = JSON.parse(this.getJSON(url));
+    }
+    if(userSearch != "" && units == "C")
+    {
+      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=metric&type=accurate";
+    }
+    var json_obj = JSON.parse(this.getJSON(url));
     weather = json_obj.weather;
     return json_obj;
   }
@@ -58,9 +66,9 @@ export class Weather extends React.Component
     return Httpreq.responseText;
   }
 
-  reloadUrl(userSearch)
+  reloadUrl(userSearch, units)
   {
-    this.setState({ json: this.loadUrl(userSearch) });
+    this.setState({ json: this.loadUrl(userSearch, units) });
   }
 
   componentWillMount() { this.determineWeather(); }
@@ -68,7 +76,8 @@ export class Weather extends React.Component
 
   componentWillReceiveProps(nextProps)
   {
-    this.reloadUrl(nextProps.cityStart);
+    this.setState({ units: nextProps.units });
+    this.reloadUrl(nextProps.cityStart, nextProps.units);
     this.determineWeather();
   }
 
@@ -116,7 +125,7 @@ export class Weather extends React.Component
         <ul id="weather">
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
-          <li><h3 id="temp">{this.state.json.main.temp}° {units}</h3></li>
+          <li><h3 id="temp">{this.state.json.main.temp}° {this.state.units}</h3></li>
           <li><span id="maxTemp">{this.state.json.main.temp_max}° | </span><span id="minTemp">{this.state.json.main.temp_min}°</span></li>
         </ul>
     );
