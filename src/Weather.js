@@ -22,7 +22,8 @@ export class Weather extends React.Component
   constructor(props)
   {
     super(props);
-    url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+    url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart
+        + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
     this.determineWeather = this.determineWeather.bind(this);
     this.getUrl = this.getUrl.bind(this);
     this.loadUrl = this.loadUrl.bind(this);
@@ -38,7 +39,8 @@ export class Weather extends React.Component
   {
     if(this.state.units === "F")
     {
-      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart + "&APPID=8ead3d2f63f6f433cd582f4299720db0&units=imperial&type=accurate";
+      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart
+             + "&APPID=8ead3d2f63f6f433cd582f4299720db0&units=imperial&type=accurate";
     }
   }
 
@@ -46,11 +48,13 @@ export class Weather extends React.Component
   {
     if(userSearch != "" && units == "F")
     {
-      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
+      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch
+          + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
     }
     if(userSearch != "" && units == "C")
     {
-      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=metric&type=accurate";
+      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch
+          + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=metric&type=accurate";
     }
     var json_obj = JSON.parse(this.getJSON(url));
     weather = json_obj.weather;
@@ -125,7 +129,9 @@ export class Weather extends React.Component
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
           <li><h3 id="temp">{this.state.json.main.temp}° {this.state.units}</h3></li>
-          <li><span id="maxTemp">{this.state.json.main.temp_max}° | </span><span id="minTemp">{this.state.json.main.temp_min}°</span></li>
+          <li><span id="maxTemp">{this.state.json.main.temp_max}° {this.state.units} | </span>
+              <span id="minTemp">{this.state.json.main.temp_min}° {this.state.units}</span>
+          </li>
         </ul>
     );
   }

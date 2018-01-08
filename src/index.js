@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AwesomeButton from 'react-awesome-button'
 import './index.css'
 import { Top } from './Top.js'
 import { Weather } from './Weather.js'
@@ -34,7 +33,7 @@ export class App extends React.Component
     return(
       <div>
         <Top changeCity={this.changeCity} changeUnits={this.changeUnits} />
-        <Weather cityStart={this.state.cityStart} units={ this.state.units } id="mainWeather" />
+        <Weather cityStart={this.state.cityStart} units={this.state.units} id="mainWeather" />
         <Bottom units={this.state.units} />
       </div>
     );

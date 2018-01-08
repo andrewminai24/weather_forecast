@@ -18,7 +18,10 @@ export class Search extends Weather
   {
     userSearch = document.getElementById("userInput").value;
     if(userSearch != "")
+    {
       this.props.changeCity(userSearch);
+      document.getElementById("userInput").value = "";
+    }
   }
 
   render()
