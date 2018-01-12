@@ -25,36 +25,24 @@ export class Weather extends React.Component
     url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart
         + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
     this.determineWeather = this.determineWeather.bind(this);
-    this.getUrl = this.getUrl.bind(this);
     this.loadUrl = this.loadUrl.bind(this);
     this.reloadUrl = this.reloadUrl.bind(this);
     this.getJSON = this.getJSON.bind(this);
+    this.precise = this.precise.bind(this);
+    this.toCelcius = this.toCelcius.bind(this);
     this.state = {
-      json: this.loadUrl(userSearch, "F"),
+      json: this.loadUrl(userSearch),
       units: "F"
     };
   }
 
-  getUrl()
-  {
-    if(this.state.units === "F")
-    {
-      return "http://api.openweathermap.org/data/2.5/weather?q=" + this.props.cityStart
-             + "&APPID=8ead3d2f63f6f433cd582f4299720db0&units=imperial&type=accurate";
-    }
-  }
 
-  loadUrl(userSearch, units)
+  loadUrl(userSearch)
   {
-    if(userSearch != "" && units == "F")
+    if(userSearch != "")
     {
       url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch
           + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
-    }
-    if(userSearch != "" && units == "C")
-    {
-      url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch
-          + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=metric&type=accurate";
     }
     var json_obj = JSON.parse(this.getJSON(url));
     weather = json_obj.weather;
@@ -115,6 +103,16 @@ export class Weather extends React.Component
     }
   }
 
+  precise(x)
+  {
+    return Number.parseFloat(x).toPrecision(2);
+  }
+
+  toCelcius(x)
+  {
+  return Number.parseFloat((x - 32.0) * 5.0/9).toPrecision(2);
+  }
+
   render()
   {
     if(!this.state.json.name)
@@ -124,13 +122,27 @@ export class Weather extends React.Component
         </ul>
       );
 
+    if(this.state.units == "C")
+    {
+      return (
+        <ul id="weather">
+          <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
+          <li><img src={this.image} height="150" width="150"/></li>
+          <li><h3 id="temp">{this.toCelcius(this.state.json.main.temp)}° {this.state.units}</h3></li>
+          <li><span id="maxTemp">{this.toCelcius(this.state.json.main.temp_max)}° {this.state.units} | </span>
+              <span id="minTemp">{this.toCelcius(this.state.json.main.temp_min)}° {this.state.units}</span>
+          </li>
+        </ul>
+      );
+    }
+
     return (
         <ul id="weather">
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
           <li><img src={this.image} height="150" width="150"/></li>
-          <li><h3 id="temp">{this.state.json.main.temp}° {this.state.units}</h3></li>
-          <li><span id="maxTemp">{this.state.json.main.temp_max}° {this.state.units} | </span>
-              <span id="minTemp">{this.state.json.main.temp_min}° {this.state.units}</span>
+          <li><h3 id="temp">{this.precise(this.state.json.main.temp)}° {this.state.units}</h3></li>
+          <li><span id="maxTemp">{this.precise(this.state.json.main.temp_max)}° {this.state.units} | </span>
+              <span id="minTemp">{this.precise(this.state.json.main.temp_min)}° {this.state.units}</span>
           </li>
         </ul>
     );
