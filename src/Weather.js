@@ -2,8 +2,7 @@ import React from 'react';
 import './index.css';
 import { userSearch } from './Search.js';
 
-let url;
-let weather;
+let url, weather;
 let images = {
   rain: "images/rain.png",
   cloud: "images/cloud.png",
@@ -35,7 +34,6 @@ export class Weather extends React.Component
       units: "F"
     };
   }
-
 
   loadUrl(userSearch)
   {
@@ -96,6 +94,8 @@ export class Weather extends React.Component
         this.image = images.lightning;
       else if(weather[i].main == "Fog" || weather[i].main == "Smoke")
         this.image = images.fog;
+      else if(weather[i].main == "Mist")
+        this.image = images.fog;
       else if(weather[i].icon[2] == "n")
         this.image = images.cloudyNight;
       else if(weather[i].icon[2] == "d")
@@ -110,7 +110,7 @@ export class Weather extends React.Component
 
   toCelcius(x)
   {
-  return Number.parseFloat((x - 32.0) * 5.0/9).toPrecision(2);
+    return Number.parseFloat((x - 32.0) * 5.0 / 9).toPrecision(2);
   }
 
   render()
@@ -123,7 +123,6 @@ export class Weather extends React.Component
       );
 
     if(this.state.units == "C")
-    {
       return (
         <ul id="weather">
           <li><h1 id="city">{this.state.json.name}, {this.state.json.sys.country}</h1></li>
@@ -134,7 +133,6 @@ export class Weather extends React.Component
           </li>
         </ul>
       );
-    }
 
     return (
         <ul id="weather">
