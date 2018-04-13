@@ -126,9 +126,7 @@ export class Weather extends React.Component
   {
     if(!this.state.json)
       return (
-        <ul id="weather">
-            <li><h1 id="city">Network Error Occurred</h1></li>
-        </ul>
+            <h1 id="city">Network Error Occurred</h1>
       );
     if(!this.state.json.name)
       return (
