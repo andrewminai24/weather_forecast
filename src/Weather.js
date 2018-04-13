@@ -42,7 +42,9 @@ export class Weather extends React.Component
       url = "http://api.openweathermap.org/data/2.5/weather?q=" + userSearch
           + "&APPID=5b740bc51695a7eaa85f081a55f6a09b&units=imperial&type=accurate";
     }
-    var json_obj = JSON.parse(this.getJSON(url));
+    var responseText = this.getJSON(url);
+    if(!responseText)  return "";
+    var json_obj = JSON.parse(responseText);
     weather = json_obj.weather;
     return json_obj;
   }
@@ -51,7 +53,14 @@ export class Weather extends React.Component
   {
     var Httpreq = new XMLHttpRequest();
     Httpreq.open("GET", url, false);
-    Httpreq.send(null);
+    try
+    {
+      Httpreq.send(null);
+    } catch(exception)
+    {
+      if(exception.name  === "NetworkError")
+        return "";
+    }
     return Httpreq.responseText;
   }
 
@@ -60,8 +69,8 @@ export class Weather extends React.Component
     this.setState({ json: this.loadUrl(userSearch, units) });
   }
 
-  componentWillMount() { this.determineWeather(); }
-  componentWillUpdate() { this.determineWeather(); }
+  componentWillMount() { if(this.state.json)  this.determineWeather(); }
+  componentWillUpdate() { if(this.state.json)  this.determineWeather(); }
 
   componentWillReceiveProps(nextProps)
   {
@@ -115,6 +124,12 @@ export class Weather extends React.Component
 
   render()
   {
+    if(!this.state.json)
+      return (
+        <ul id="weather">
+            <li><h1 id="city">Network Error Occurred</h1></li>
+        </ul>
+      );
     if(!this.state.json.name)
       return (
         <ul id="weather">
