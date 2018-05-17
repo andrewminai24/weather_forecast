@@ -125,9 +125,12 @@ export class Weather extends React.Component
   render()
   {
     if(!this.state.json)
+    {
+      this.loadUrl(userSearch);
       return (
             <h1 id="city">Network Error Occurred</h1>
       );
+    }
     if(!this.state.json.name)
       return (
         <ul id="weather">
